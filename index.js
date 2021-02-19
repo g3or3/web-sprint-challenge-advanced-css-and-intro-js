@@ -232,7 +232,7 @@ artists[8].name = "Vincent Van Gogh";
  Example, if getArtistByIndex is invoked with the artists array and the number 0, it will return `the artist at index 0 is Amedeo Modigliani` */
 
 function getArtistByIndex(arr, index) {
-  return `the artist at index ${artists[index].id} is ${artists[index].name}`;
+  return `the artist at index ${arr[index].id} is ${arr[index].name}`;
 }  
 
 // console.log(getArtistByIndex(artists, 0));
@@ -246,11 +246,11 @@ Example born in 1901 and died in 1959 - included -- born in 1889 and died in 192
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 
 function get20s(arr){
-  let filteredArr = [];
-  for (let artist of arr)
+  return arr.reduce((filteredArr, artist) => {
     if (artist.years.split('-').map(elem => parseInt(elem)).every(elem => elem >= 1900 && elem <= 2000))
       filteredArr.push(artist.name)
-  return filteredArr;
+    return filteredArr;
+  }, []);
 }
 
 // console.log(get20s(artists));
@@ -302,11 +302,10 @@ Use lotsOfArt to do the following:
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
 function lotsOfArt(arr){
-  let filteredArr = [];
-  for (let artist of arr)
-    if (artist.paintings > 100)
-      filteredArr.push(artist.name)
-  return filteredArr;
+  return arr.reduce((filteredArr, curArtist) => {
+    if (curArtist.paintings > 100) filteredArr.push(curArtist.name);
+    return filteredArr;
+  }, []);
 }
 
 // console.log(lotsOfArt(artists));
@@ -345,7 +344,18 @@ Create a function called `randomize` that takes a data array as an argument and 
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+// in place randomization
 function randomize(arr){
+  return arr.reduce((arr, curVal, curIndex) => {
+    let randomIndex = Math.floor(Math.random() * arr.length);
+    arr[curIndex] = arr[randomIndex];
+    arr[randomIndex] = curVal;
+    return arr;
+  }, [1]);
+}
+
+// returns an array that can be assigned to the previous value of 'arr'
+function randomize2(arr){
   return arr.reduce((newArr) => {
     let randomIndex = Math.floor(Math.random() * arr.length);
     while (newArr.includes(arr[randomIndex]) === true) 
@@ -355,8 +365,8 @@ function randomize(arr){
   }, []);
 }
 
-arr = randomize(arr);
-// console.log(arr);
+// console.log(randomize(arr));
+// console.log(randomize2(arr));
 
  /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
  Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
