@@ -220,6 +220,7 @@ Practice accessing data above by console.log-ing following items:
 There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
 
 artists[8].name = "Vincent Van Gogh";
+
 // console.log(artists[8].name);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀  
@@ -246,9 +247,9 @@ If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 
 function get20s(arr){
   let filteredArr = [];
-  for (let i = 0; i < arr.length; i++)
-    if (arr[i].years.split('-').map(elem => parseInt(elem)).every(elem => elem >= 1900 && elem <= 2000))
-      filteredArr.push(arr[i].name)
+  for (let artist of arr)
+    if (artist.years.split('-').map(elem => parseInt(elem)).every(elem => elem >= 1900 && elem <= 2000))
+      filteredArr.push(artist.name)
   return filteredArr;
 }
 
@@ -302,9 +303,9 @@ For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte
 
 function lotsOfArt(arr){
   let filteredArr = [];
-  for (let i = 0; i < arr.length; i++)
-    if (arr[i].paintings > 100)
-      filteredArr.push(arr[i].name)
+  for (let artist of arr)
+    if (artist.paintings > 100)
+      filteredArr.push(artist.name)
   return filteredArr;
 }
 
@@ -342,12 +343,20 @@ function getHTML(/* Code here */){
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */){
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-    /* Code here */
+function randomize(arr){
+  return arr.reduce((newArr) => {
+    let randomIndex = Math.floor(Math.random() * arr.length);
+    while (newArr.includes(arr[randomIndex]) === true) 
+      randomIndex = Math.floor(Math.random() * arr.length);
+    newArr.push(arr[randomIndex]);
+    return newArr;
+  }, []);
+}
 
-  }
-
+arr = randomize(arr);
+// console.log(arr);
 
  /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
  Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
