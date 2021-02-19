@@ -209,11 +209,11 @@ Practice accessing data above by console.log-ing following items:
 
 //(1) Name of the first artist (0th index) in the array
 
-// console.log(artists[0].name);
+console.log(artists[0].name);
 
 //(2) Bio of the third artist (2nd index) in the array 
 
-// console.log(artists[2].bio);
+console.log(artists[2].bio);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 (no function needed) 
@@ -332,12 +332,9 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
-
-    /* Code here */
-
-  }
-
+function getHTML(oops){
+  console.log("Sorry I don't understand the problem statement :)");
+}
 
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
@@ -351,7 +348,7 @@ function randomize(arr){
     arr[curIndex] = arr[randomIndex];
     arr[randomIndex] = curVal;
     return arr;
-  }, [1]);
+  }, [0]);
 }
 
 // returns an array that can be assigned to the previous value of 'arr'
